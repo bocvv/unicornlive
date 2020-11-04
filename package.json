@@ -10,7 +10,7 @@
     "aws-amplify": "^2.2.5",
     "aws-amplify-react": "^3.1.6",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
+    "react": "^16.13.1",
     "react-dom": "^16.13.0",
     "react-native": "^0.63.3",
     "react-popup": "^0.10.0",
