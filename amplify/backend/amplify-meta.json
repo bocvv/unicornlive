@@ -1,0 +1,82 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-unicornlive-dev-62312-authRole",
+      "UnauthRoleArn": "arn:aws:iam::288341241306:role/amplify-unicornlive-dev-62312-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::288341241306:role/amplify-unicornlive-dev-62312-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-unicornlive-dev-62312-deployment",
+      "UnauthRoleName": "amplify-unicornlive-dev-62312-unauthRole",
+      "StackName": "amplify-unicornlive-dev-62312",
+      "StackId": "arn:aws:cloudformation:us-east-1:288341241306:stack/amplify-unicornlive-dev-62312/3999cb90-1e66-11eb-8865-0a720c487c5f",
+      "AmplifyAppId": "d2co72ul0k7nnl"
+    }
+  },
+  "video": {
+    "mylivestream": {
+      "service": "video",
+      "serviceType": "ivs",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-unicornlive-dev-62312-deployment/amplify-cfn-templates/video/mylivestream-ivs-workflow-template.yaml",
+        "logicalId": "videomylivestream"
+      },
+      "lastPushTimeStamp": "2020-11-04T07:00:51.097Z",
+      "output": {
+        "oVideoChannelArn": "arn:aws:ivs:us-east-1:288341241306:channel/gjR9MIiW9JM5",
+        "oVideoOutput": "https://1931c3873942.us-east-1.playback.live-video.net/api/video/v1/us-east-1.288341241306.channel.gjR9MIiW9JM5.m3u8",
+        "oVideoInputURL": "1931c3873942.global-contribute.live-video.net",
+        "oVideoInputKey": "sk_us-east-1_EoWlM7JbBjeB_r4Ih2lTsu5HSVWqZ6TqnVtE0jra4r8"
+      },
+      "lastPushDirHash": "QuiaTH8x2l5N1kOzJ2qyKq5eGHg="
+    }
+  },
+  "auth": {
+    "unicornlivee4fc5ef3": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-unicornlive-dev-62312-deployment/amplify-cfn-templates/auth/unicornlivee4fc5ef3-cloudformation-template.yml",
+        "logicalId": "authunicornlivee4fc5ef3"
+      },
+      "lastPushTimeStamp": "2020-11-04T07:00:52.716Z",
+      "output": {
+        "AppClientSecret": "fkh5fbagimdvi4c7ehfg0qer6orr6v6j69mmc6mka9cr17u3dd1",
+        "UserPoolId": "us-east-1_LsT2WI074",
+        "AppClientIDWeb": "16uukb8257p6elfdhs4fafhql5",
+        "AppClientID": "1351slingrov5m3f0d6mqugnl8",
+        "IdentityPoolId": "us-east-1:ed221ee9-0af8-4e3e-b94f-a6d05e8a4e5c",
+        "IdentityPoolName": "unicornlivee4fc5ef3_identitypool_e4fc5ef3__dev",
+        "UserPoolName": "unicornlivee4fc5ef3_userpool_e4fc5ef3"
+      },
+      "lastPushDirHash": "knmo4kGjDbt4Mbey7HG5kG9WsRE="
+    }
+  },
+  "api": {
+    "unicornlive": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authunicornlivee4fc5ef3"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "dcxhoq2qhzdb3iqrsobvsup2ju",
+        "GraphQLAPIEndpointOutput": "https://ujothh4abzeebcxqcj7yxhqmue.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-unicornlive-dev-62312-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiunicornlive"
+      },
+      "lastPushTimeStamp": "2020-11-04T07:00:52.716Z",
+      "lastPushDirHash": "26sV3JVIuNZv6mco/nLqtM1J7vU="
+    }
+  }
+}

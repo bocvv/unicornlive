@@ -1,0 +1,24 @@
+type Question @model (subscriptions: {level: public}) 
+@auth (
+  rules: [
+    {allow:private}
+  ]
+)
+{
+    id: ID!
+    question: String!
+    answers: [String]!
+    answerId: Int
+}
+
+type Answer @model @key(fields: ["owner", "gameID"])
+@auth(
+  rules: [
+    {allow: owner, ownerField: "owner"}
+  ]
+)
+{
+    owner: String!
+    gameID: ID!
+    answer: [Int]
+}

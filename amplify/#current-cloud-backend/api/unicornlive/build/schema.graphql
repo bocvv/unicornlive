@@ -1,0 +1,222 @@
+type Question {
+  id: ID!
+  question: String!
+  answers: [String]!
+  answerId: Int
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Answer {
+  owner: String!
+  gameID: ID!
+  answer: [Int]
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelQuestionConnection {
+  items: [Question]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelQuestionFilterInput {
+  id: ModelIDInput
+  question: ModelStringInput
+  answers: ModelStringInput
+  answerId: ModelIntInput
+  and: [ModelQuestionFilterInput]
+  or: [ModelQuestionFilterInput]
+  not: ModelQuestionFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getQuestion(id: ID!): Question
+  listQuestions(filter: ModelQuestionFilterInput, limit: Int, nextToken: String): ModelQuestionConnection
+  getAnswer(owner: String!, gameID: ID!): Answer
+  listAnswers(owner: String, gameID: ModelIDKeyConditionInput, filter: ModelAnswerFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelAnswerConnection
+}
+
+input CreateQuestionInput {
+  id: ID
+  question: String!
+  answers: [String]!
+  answerId: Int
+}
+
+input UpdateQuestionInput {
+  id: ID!
+  question: String
+  answers: [String]
+  answerId: Int
+}
+
+input DeleteQuestionInput {
+  id: ID
+}
+
+type Mutation {
+  createQuestion(input: CreateQuestionInput!, condition: ModelQuestionConditionInput): Question
+  updateQuestion(input: UpdateQuestionInput!, condition: ModelQuestionConditionInput): Question
+  deleteQuestion(input: DeleteQuestionInput!, condition: ModelQuestionConditionInput): Question
+  createAnswer(input: CreateAnswerInput!, condition: ModelAnswerConditionInput): Answer
+  updateAnswer(input: UpdateAnswerInput!, condition: ModelAnswerConditionInput): Answer
+  deleteAnswer(input: DeleteAnswerInput!, condition: ModelAnswerConditionInput): Answer
+}
+
+input ModelQuestionConditionInput {
+  question: ModelStringInput
+  answers: ModelStringInput
+  answerId: ModelIntInput
+  and: [ModelQuestionConditionInput]
+  or: [ModelQuestionConditionInput]
+  not: ModelQuestionConditionInput
+}
+
+type Subscription {
+  onCreateQuestion: Question @aws_subscribe(mutations: ["createQuestion"])
+  onUpdateQuestion: Question @aws_subscribe(mutations: ["updateQuestion"])
+  onDeleteQuestion: Question @aws_subscribe(mutations: ["deleteQuestion"])
+  onCreateAnswer(owner: String!): Answer @aws_subscribe(mutations: ["createAnswer"])
+  onUpdateAnswer(owner: String!): Answer @aws_subscribe(mutations: ["updateAnswer"])
+  onDeleteAnswer(owner: String!): Answer @aws_subscribe(mutations: ["deleteAnswer"])
+}
+
+type ModelAnswerConnection {
+  items: [Answer]
+  nextToken: String
+}
+
+input ModelAnswerFilterInput {
+  owner: ModelStringInput
+  gameID: ModelIDInput
+  answer: ModelIntInput
+  and: [ModelAnswerFilterInput]
+  or: [ModelAnswerFilterInput]
+  not: ModelAnswerFilterInput
+}
+
+input CreateAnswerInput {
+  owner: String!
+  gameID: ID!
+  answer: [Int]
+}
+
+input UpdateAnswerInput {
+  owner: String!
+  gameID: ID!
+  answer: [Int]
+}
+
+input DeleteAnswerInput {
+  owner: String!
+  gameID: ID!
+}
+
+input ModelAnswerConditionInput {
+  answer: ModelIntInput
+  and: [ModelAnswerConditionInput]
+  or: [ModelAnswerConditionInput]
+  not: ModelAnswerConditionInput
+}
+
+input ModelIDKeyConditionInput {
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  between: [ID]
+  beginsWith: ID
+}

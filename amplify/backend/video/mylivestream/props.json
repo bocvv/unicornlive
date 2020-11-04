@@ -1,0 +1,10 @@
+{
+    "shared": {
+        "resourceName": "mylivestream",
+        "bucket": "amplify-unicornlive-dev-62312-deployment"
+    },
+    "channel": {
+        "channelQuality": "STANDARD",
+        "channelLatency": "LOW"
+    }
+}

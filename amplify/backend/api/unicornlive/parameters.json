@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "unicornlive",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authunicornlivee4fc5ef3",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
